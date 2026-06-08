@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday, My sweet sweet Mr l 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #fdf6ee;
+    --blush: #f4c2c2;
+    --rose: #c0687a;
+    --deep: #7a2d3e;
+    --gold: #d4a853;
+    --gold-light: #f0d48a;
+    --charcoal: #2a1a1f;
+    --petal: #fde8e8;
+    --sage: #c8d8c0;
+    --ink: #3a2030;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 14px; height: 14px;
+    background: var(--rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* FLOATING PETALS */
+  .petals-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0% { opacity: 0; transform: translateY(-60px) rotate(0deg); }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(105vh) rotate(720deg); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1.2rem 2rem;
+    background: rgba(253,246,238,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192,104,122,0.15);
+  }
+  nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--deep); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244,194,194,0.35) 0%, transparent 70%);
+    animation: breathe 5s ease-in-out infinite;
+  }
+  .hero-bg-circle:nth-child(1) { width: 600px; height: 600px; top: -100px; left: -150px; }
+  .hero-bg-circle:nth-child(2) { width: 400px; height: 400px; bottom: -80px; right: -100px; animation-delay: 2s; }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .hero-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    color: var(--deep);
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+    text-shadow: 0 4px 30px rgba(122,45,62,0.15);
+  }
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--rose);
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-name {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--gold);
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+
+  .scroll-hint {
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.4s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--rose);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.4; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--deep);
+    text-align: center;
+    line-height: 1.25;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    max-width: 200px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--blush);
+  }
+  .divider span { color: var(--rose); font-size: 1rem; }
+
+  /* OUR STORY */
+  #story {
+    padding: 7rem 2rem;
+    background: var(--petal);
+  }
+  .story-grid {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    display: grid;
+    gap: 2.5rem;
+  }
+  .story-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 4px 40px rgba(192,104,122,0.08);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.7s cubic-bezier(.23,1,.32,1);
+  }
+  .story-card.visible { transform: translateY(0); opacity: 1; }
+  .story-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--blush), var(--petal));
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  .story-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .story-card p {
+    color: #6b4a55;
+    line-height: 1.75;
+    font-size: 0.95rem;
+  }
+  .story-highlight {
+    display: inline;
+    background: linear-gradient(to right, rgba(244,194,194,0.5), rgba(212,168,83,0.3));
+    border-radius: 4px;
+    padding: 0 4px;
+    font-style: italic;
+  }
+
+  /* REASONS */
+  #reasons {
+    padding: 7rem 2rem;
+    background: var(--cream);
+  }
+  .reasons-grid {
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .reason-card {
+    border: 1.5px solid rgba(192,104,122,0.2);
+    border-radius: 1.2rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(.23,1,.32,1);
+    background: white;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .reason-card.visible { transform: translateY(0); opacity: 1; }
+  .reason-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--rose);
+    box-shadow: 0 12px 40px rgba(192,104,122,0.15);
+  }
+  .reason-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: rgba(192,104,122,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .reason-emoji { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .reason-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .reason-card p { font-size: 0.88rem; color: #7a5060; line-height: 1.6; }
+
+  /* VIDEO */
+  #video-section {
+    padding: 7rem 2rem;
+    background: var(--deep);
+    text-align: center;
+  }
+  #video-section .section-label { color: var(--gold-light); }
+  #video-section .section-title { color: var(--cream); }
+ .video-wrapper {
+  max-width: 350px;
+  margin: 3rem auto;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+  .video-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2a1018, #1a0d12);
+    color: var(--blush);
+    gap: 1rem;
+  }
+  .video-placeholder .play-icon {
+    width: 70px; height: 70px;
+    border: 2px solid var(--blush);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding-left: 6px;
+  }
+  .video-placeholder .play-icon:hover {
+    background: rgba(244,194,194,0.15);
+    transform: scale(1.1);
+  }
+  .video-placeholder p { font-size: 0.9rem; opacity: 0.7; font-style: italic; }
+  .video-caption {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(244,194,194,0.7);
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* QUIZ */
+  #quiz {
+    padding: 7rem 2rem;
+    background: linear-gradient(180deg, var(--petal) 0%, #fff8f8 100%);
+  }
+  .quiz-container {
+    max-width: 680px;
+    margin: 3rem auto 0;
+  }
+  .quiz-box {
+    background: white;
+    border-radius: 2rem;
+    padding: 2.5rem;
+    box-shadow: 0 8px 50px rgba(192,104,122,0.1);
+    border: 1.5px solid rgba(192,104,122,0.1);
+  }
+  .quiz-progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 2rem;
+  }
+  .quiz-dot {
+    height: 4px;
+    flex: 1;
+    border-radius: 2px;
+    background: var(--blush);
+    transition: background 0.4s;
+  }
+  .quiz-dot.done { background: var(--rose); }
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep);
+    margin-bottom: 0.4rem;
+    line-height: 1.45;
+  }
+  .quiz-hint { font-size: 0.82rem; color: var(--rose); margin-bottom: 1.5rem; }
+  .quiz-options { display: grid; gap: 0.8rem; }
+  .quiz-btn {
+    width: 100%;
+    padding: 0.9rem 1.4rem;
+    background: var(--petal);
+    border: 1.5px solid rgba(192,104,122,0.2);
+    border-radius: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .quiz-btn:hover {
+    background: var(--blush);
+    border-color: var(--rose);
+    transform: translateX(4px);
+  }
+  .quiz-btn.correct {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+    color: #2e7d32;
+  }
+  .quiz-btn.wrong {
+    background: #fff0f0;
+    border-color: #ef9a9a;
+    color: #c62828;
+  }
+  .quiz-feedback {
+    margin-top: 1.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-style: italic;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: #f1f8f1; color: #2e7d32; }
+  .quiz-feedback.wrong { background: #fff5f5; color: #c62828; }
+  .quiz-next {
+    margin-top: 1.2rem;
+    padding: 0.75rem 2rem;
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: none;
+    transition: all 0.2s;
+  }
+  .quiz-next.show { display: inline-block; }
+  .quiz-next:hover { background: var(--deep); transform: scale(1.03); }
+
+  /* RESULT */
+  .quiz-result {
+    text-align: center;
+    padding: 2rem;
+    display: none;
+  }
+  .quiz-result.show { display: block; }
+  .result-score {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 5rem;
+    color: var(--rose);
+    line-height: 1;
+  }
+  .result-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep);
+    margin-top: 1rem;
+    font-style: italic;
+  }
+  .result-hearts { font-size: 2rem; margin: 1rem 0; letter-spacing: 0.5rem; }
+  .quiz-restart {
+    margin-top: 1rem;
+    padding: 0.7rem 1.8rem;
+    background: transparent;
+    border: 1.5px solid var(--rose);
+    border-radius: 2rem;
+    color: var(--rose);
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.88rem;
+  }
+  .quiz-restart:hover { background: var(--rose); color: white; }
+
+  /* LETTER */
+  #letter {
+    padding: 7rem 2rem;
+    background: var(--deep);
+  }
+  .letter-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 2rem;
+    padding: 3.5rem;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .letter-inner::before {
+    content: '❝';
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    font-size: 8rem;
+    color: rgba(192,104,122,0.08);
+    font-family: serif;
+    line-height: 1;
+  }
+  .letter-to {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.2rem;
+    color: var(--rose);
+    margin-bottom: 1.5rem;
+  }
+  .letter-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .letter-body p { margin-bottom: 1.2rem; }
+  .letter-sign {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2rem;
+    color: var(--rose);
+    margin-top: 2rem;
+    text-align: right;
+  }
+  .letter-hearts {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 0.5rem;
+    margin-top: 1rem;
+    color: var(--rose);
+  }
+
+  /* GALLERY of moments (text-based) */
+  #moments {
+    padding: 7rem 2rem;
+    background: var(--cream);
+  }
+  .moments-track {
+    display: flex;
+    gap: 1.2rem;
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .moment-tag {
+    background: white;
+    border: 1.5px solid rgba(192,104,122,0.2);
+    border-radius: 2rem;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.88rem;
+    color: var(--rose);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    transition: all 0.25s;
+    cursor: default;
+    animation: tagFloat ease-in-out infinite;
+  }
+  .moment-tag:hover {
+    background: var(--rose);
+    color: white;
+    transform: scale(1.05);
+    border-color: var(--rose);
+  }
+  @keyframes tagFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+  }
+  .footer-script {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 3rem;
+    color: var(--blush);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.8rem; opacity: 0.5; margin-top: 1rem; }
+  .footer-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+  .footer-hearts span {
+    animation: heartBeat 1.2s ease-in-out infinite;
+  }
+  .footer-hearts span:nth-child(2) { animation-delay: 0.2s; }
+  .footer-hearts span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  /* FIREWORKS CANVAS */
+  #fireworks-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* BIRTHDAY BUTTON */
+  .birthday-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    border: none;
+    border-radius: 3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    box-shadow: 0 8px 30px rgba(122,45,62,0.3);
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.1s forwards;
+  }
+  .birthday-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(122,45,62,0.4);
+  }
+
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed;
+    width: 10px; height: 10px;
+    top: -10px;
+    border-radius: 2px;
+    opacity: 0;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+    z-index: 9998;
+  }
+  @keyframes confettiFall {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(110vh) rotate(960deg); }
+  }
+
+  /* SPARKLE hover effect */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    font-size: 1rem;
+    animation: sparkleAway 0.8s forwards;
+    transform: translate(-50%, -50%);
+  }
+  @keyframes sparkleAway {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -70%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -90%) scale(0.8); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { gap: 1.2rem; flex-wrap: wrap; font-size: 0.65rem; }
+    .letter-inner { padding: 2rem 1.5rem; }
+    .story-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="fireworks-canvas"></canvas>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Floating Petals -->
+<div class="petals-bg" id="petals"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#story">Our Story</a>
+  <a href="#reasons">Why You</a>
+  <a href="#video-section">Our Video</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#letter">Letter</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <p class="hero-date">June 9, 2026 · A Very Special Day</p>
+  <h1 class="hero-title">Happy Birthday,</h1>
+  <p class="hero-sub">To the friend who became everything —</p>
+  <p class="hero-name">My favourite person 💫</p>
+  <button class="birthday-btn" onclick="launchCelebration()">💕Click baby💕!</button>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story">
+  <p class="section-label">How it started</p>
+  <h2 class="section-title">Our <em>Beautiful</em> Beginning</h2>
+  <div class="divider"><span>✦</span></div>
+  <div class="story-grid">
+    <div class="story-card">
+      <div class="story-icon">📍</div>
+      <div>
+        <h3>The Place That Changed Everything</h3>
+        <p>Somewhere <span class="story-highlight">between Queen Esther Hall of Residence and the Cafeteria Gazebo</span> — a spot so ordinary, yet it holds the most extraordinary memory. That corridor, that walkway, that exact slice of campus air is where it all began. I didn't know then that a single moment in that space would rewrite everything.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-icon">📸</div>
+      <div>
+        <h3>The Snapchat Moment</h3>
+        <p>Baby I could remember you came for a friend. Just to <span class="story-highlight">get my Snap</span>. That was the whole mission. A small errand, a casual ask — and yet, look at us now. The universe has a beautiful way of disguising destiny as a simple favour. He was delivering a message and unknowingly delivering himself into my life forever. And you don't know how much you and this whole moment matters to me.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-icon">🤝</div>
+      <div>
+        <h3>The Best Friend I Never Planned For</h3>
+        <p>You became <span class="story-highlight">the best friend I never had</span>. Not the friend I searched for, not the one I expected — but the one who just showed up and fit perfectly into all the spaces I didn't even know were empty. That's the rarest kind of person. And somehow, somehow — you're mine. Baby you were that one friend that despite all my naiveness you never left my side. I knew you were just the one mehn with how calm and reserved you get when I become cranky. Chai you just dey buss my head.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section id="reasons">
+  <p class="section-label">From my heart</p>
+  <h2 class="section-title">Reasons I <em>adore</em> you</h2>
+  <div class="divider"><span>✦</span></div>
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <div class="reason-num">01</div>
+      <div class="reason-emoji">🌙</div>
+      <h4>You just get it</h4>
+      <p>Before I finish a sentence, you already understand. That kind of connection isn't common — it's rare and it's precious and it's ours.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">02</div>
+      <div class="reason-emoji">😂</div>
+      <h4>You make everything funnier</h4>
+      <p>Even the dull days have a soundtrack with you in them. Your laugh, your timing, your ridiculous humour — it's my favourite medicine.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">03</div>
+      <div class="reason-emoji">🛡️</div>
+      <h4>You show up</h4>
+      <p>Not just in the good moments. You're there when things get quiet and heavy too. That loyalty is something I don't take lightly.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">04</div>
+      <div class="reason-emoji">✨</div>
+      <h4>You see me clearly</h4>
+      <p>Not a filtered version, not a performance. You see the actual me and somehow you choose to stay. That means more than any word I own.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">05</div>
+      <div class="reason-emoji">🌸</div>
+      <h4>You started as a stranger</h4>
+      <p>A stranger on a mission to get a Snap. Now you're irreplaceable. That glow-up of a relationship will never not be the most beautiful story I know.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">06</div>
+      <div class="reason-emoji">💛</div>
+      <h4>You are genuinely kind</h4>
+      <p>Not performative, not calculated — just effortlessly, quietly kind. The world is softer because you're in it. And I'm luckier because you're in mine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video-section">
+  <p class="section-label">A moment saved for you</p>
+  <h2 class="section-title" style="color:var(--cream);">Our <em style="color:var(--gold-light)">Little</em> Film</h2>
+  <div class="divider"><span style="color:var(--gold)">✦</span></div>
+  <div class="video-wrapper">
+    <!--
+      ╔════════════════════════════════════════════════════════════╗
+      ║  TO ADD YOUR VIDEO:                                        ║
+      ║  1. Place your video file (e.g. "our-video.mp4") in the   ║
+      ║     same folder as this HTML file.                         ║
+      ║  2. Uncomment the <video> tag below.                       ║
+      ║  3. Replace "your-video.mp4" with your filename.           ║
+      ║  4. Delete or comment out the placeholder div.             ║
+      ╚════════════════════════════════════════════════════════════╝
+    -->
+
+    
+   <div class="video-wrapper">
+  <video controls playsinline preload="metadata">
+    <source src="lekanm.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+    
+  
+  <p class="video-caption">Every second with you deserves to be remembered ✦</p>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <p class="section-label">Let's find out</p>
+  <h2 class="section-title">How well do you <em>know us?</em></h2>
+  <div class="divider"><span>✦</span></div>
+  <div class="quiz-container">
+    <div class="quiz-box">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div id="quizContent"></div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-hearts" id="resultHearts"></div>
+        <p class="result-msg" id="resultMsg"></p>
+        <br/>
+        <button class="quiz-restart" onclick="restartQuiz()">Play Again 🔄</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+  <p class="section-label" style="color:var(--gold-light);">From me, to you</p>
+  <h2 class="section-title" style="color:var(--cream);">A Love <em style="color:var(--gold-light)">Letter</em></h2>
+  <div class="divider"><span style="color:var(--gold)">✦</span></div>
+  <div class="letter-inner">
+    <p class="letter-to">My dearest love,</p>
+    <div class="letter-body">
+      <p>I want to tell you something I've thought about more times than I can count. I think about that walkway — the one between Queen Esther Hall and the Gazebo. On any other day, it would have just been a corridor. But it became the place where you walked into my life, even if you didn't mean to stay.</p>
+      <p>You came for a Snap. And even after we never thought we'd be more I met you outside beside the cafeteria with that black boy. You stayed as a best friend. And somewhere between all those conversations, the late nights, the laughter, and the quiet moments in between — you became the person I didn't know I was waiting for.</p>
+      <p>What I love most is that it wasn't dramatic. There was no grand moment of realisation, no fireworks (well, except maybe today 🎉). It was just you, showing up, consistently and warmly, until one day I looked up and realised you were the safest place I know.</p>
+      <p>So today, on your birthday, I want you to know this: you are deeply, genuinely loved. Not because you're perfect — but because you are so extraordinarily, beautifully you. And that version of you is my absolute favourite person in the world.</p>
+      <p>Happy birthday to my best friend, my partner, my favourite "errand" the universe ever ran. Here's to you — and to every year ahead that I get to spend knowing you. 🌸</p>
+    </div>
+    <p class="letter-sign">With all my heart,<br/>Your girl Mary❤️</p>
+    <p class="letter-hearts">🌸 💕 🌸 💕 🌸</p>
+  </div>
+</section>
+
+<!-- MOMENTS -->
+<section id="moments">
+  <p class="section-label">A collection</p>
+  <h2 class="section-title">Little <em>Memories</em> We've Made</h2>
+  <div class="divider"><span>✦</span></div>
+  <div class="moments-track" id="momentsTrack"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-script">Happy Birthday!</span>
+  <p>Crafted with love · June 9th, 2026</p>
+  <div class="footer-hearts">
+    <span>🌸</span><span>💕</span><span>🌸</span>
+  </div>
+  <p style="margin-top:1.5rem; opacity:0.35; font-size:0.75rem;">Made especially for you · with every bit of my heart</p>
+</footer>
+
+<script>
+// ── CURSOR ──────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+const sparkleEmojis = ['✨', '🌸', '💕', '⭐', '🌷', '💫'];
+let sparkleTimer = 0;
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  }, 60);
+
+  // Occasional sparkles on move
+  sparkleTimer++;
+  if (sparkleTimer % 12 === 0) {
+    const sp = document.createElement('div');
+    sp.className = 'sparkle';
+    sp.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+    sp.style.left = e.clientX + 'px';
+    sp.style.top = e.clientY + 'px';
+    document.body.appendChild(sp);
+    setTimeout(() => sp.remove(), 800);
+  }
+});
+
+// ── PETALS ───────────────────────────────────────────────
+const petalsBg = document.getElementById('petals');
+const petalTypes = ['🌸', '🌷', '🌺', '✿', '🏵️'];
+function createPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+  const dur = 7 + Math.random() * 8;
+  p.style.animationDuration = dur + 's';
+  p.style.animationDelay = Math.random() * 5 + 's';
+  petalsBg.appendChild(p);
+  setTimeout(() => p.remove(), (dur + 5) * 1000);
+}
+for (let i = 0; i < 18; i++) createPetal();
+setInterval(createPetal, 1200);
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.story-card, .reason-card').forEach(el => observer.observe(el));
+
+// ── MOMENTS TAGS ──────────────────────────────────────────
+const moments = [
+  'Between Queen Esther & the Gazebo 📍',
+  'The Snap that started it all 📸',
+  'Becoming best friends 🤝',
+  'Late night conversations 🌙',
+  'Making each other laugh 😂',
+  'Unexpected friendship 🌸',
+  'Growing together 🌱',
+  'Every shared silence 🤍',
+  'The friend I never had 💛',
+  'Campus walks ☀️',
+  'All the inside jokes 😅',
+  'Being completely seen 👁️',
+  'Staying when it matters 🛡️',
+  'Our first hello 🌷',
+];
+const track = document.getElementById('momentsTrack');
+moments.forEach((m, i) => {
+  const tag = document.createElement('div');
+  tag.className = 'moment-tag';
+  tag.textContent = m;
+  tag.style.animationDuration = (3 + (i % 4) * 0.5) + 's';
+  tag.style.animationDelay = (i * 0.3) + 's';
+  track.appendChild(tag);
+});
+
+// ── QUIZ ──────────────────────────────────────────────────
+const questions = [
+  {
+    q: "Where exactly did we first meet?",
+    hint: "Think about a very specific spot on campus...",
+    options: [
+      "A) In the library during exam season",
+      "B) Between Queen Esther Hall and the Cafeteria Gazebo",
+      "C) At a friend's birthday party",
+      "D) In the school cafeteria itself"
+    ],
+    correct: 1,
+    feedback: {
+      right: "Yes! That little walkway between Queen Esther Hall and the Cafeteria Gazebo — the most ordinary place that somehow became the most special one. 💕",
+      wrong: "It was between Queen Esther Hall and the Cafeteria Gazebo — a place that will forever be special to us. 🌸"
+    }
+  },
+  {
+    q: "Why did he originally approach me?",
+    hint: "It started as a simple favour for someone else...",
+    options: [
+      "A) He wanted to borrow my notes",
+      "B) We were assigned as project partners",
+      "C) He was getting my Snapchat for his friend",
+      "D) He needed directions to a building"
+    ],
+    correct: 2,
+    feedback: {
+      right: "Exactly! He came on a mission for his friend — to get my Snap. The smallest errand turned into the biggest blessing. 📸✨",
+      wrong: "He came to get my Snapchat for a friend — and ended up getting something neither of us expected: a forever person. 💛"
+    }
+  },
+  {
+    q: "What did he become to me beyond a boyfriend?",
+    hint: "Think about the most meaningful kind of friendship...",
+    options: [
+      "A) My study partner and tutor",
+      "B) The best friend I never had",
+      "C) My gym accountability buddy",
+      "D) My roommate's best friend"
+    ],
+    correct: 1,
+    feedback: {
+      right: "The best friend I never had — that's exactly it. The kind of connection that doesn't happen often, and when it does, you hold on with both hands. 🌸",
+      wrong: "He became the best friend I never had. The rarest kind — a friend who found me when I wasn't even looking. 💕"
+    }
+  },
+  {
+    q: "What's the best way to describe how our relationship started?",
+    hint: "It was never planned, never expected...",
+    options: [
+      "A) Love at first sight at a campus event",
+      "B) A slow-burn online connection",
+      "C) A serendipitous errand that turned into everything",
+      "D) Introduced through mutual friends at a party"
+    ],
+    correct: 2,
+    feedback: {
+      right: "A serendipitous errand that turned into everything — beautifully put and beautifully true. The universe is an incredible writer. ✨",
+      wrong: "It was a serendipitous errand — he came for something small, and the universe gave us something enormous. 🌷"
+    }
+  },
+  {
+    q: "Do you love what i created for you?",
+    hint: "The simplest and most profound answer...",
+    options: [
+      "A) MAybe",
+      "B) Mtchew I don know",
+      "C) Yes baby I love baby",
+      "D) Ehn nau"
+    ],
+    correct: 2,
+    feedback: {
+      right: "I love more baby  🎂💕",
+      wrong: "If i slap you now, you go know say you no love am 😂💕"
+    }
+  }
+];
+
+let current = 0, score = 0, answered = false;
+
+function buildProgress() {
+  const prog = document.getElementById('quizProgress');
+  prog.innerHTML = '';
+  questions.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'quiz-dot' + (i < current ? ' done' : '');
+    prog.appendChild(dot);
+  });
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const content = document.getElementById('quizContent');
+  answered = false;
+  content.innerHTML = `
+    <p class="quiz-q">${q.q}</p>
+    <p class="quiz-hint">💭 ${q.hint}</p>
+    <div class="quiz-options">
+      ${q.options.map((opt, i) => `<button class="quiz-btn" onclick="answer(${i})">${opt}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <button class="quiz-next" id="quizNext" onclick="nextQuestion()">${current === questions.length - 1 ? 'See Results 🎊' : 'Next Question →'}</button>
+  `;
+  buildProgress();
+}
+
+function answer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const btns = document.querySelectorAll('.quiz-btn');
+  const feedback = document.getElementById('quizFeedback');
+  const nextBtn = document.getElementById('quizNext');
+  const isCorrect = idx === q.correct;
+
+  btns[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  btns[q.correct].classList.add('correct');
+  btns.forEach(b => b.disabled = true);
+
+  if (isCorrect) {
+    score++;
+    feedback.textContent = '✓ ' + q.feedback.right;
+    feedback.className = 'quiz-feedback show correct';
+  } else {
+    feedback.textContent = '✗ ' + q.feedback.wrong;
+    feedback.className = 'quiz-feedback show wrong';
+  }
+  nextBtn.classList.add('show');
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quizContent').style.display = 'none';
+  document.getElementById('quizProgress').style.display = 'none';
+  const result = document.getElementById('quizResult');
+  result.classList.add('show');
+
+  const pct = Math.round((score / questions.length) * 100);
+  document.getElementById('resultScore').textContent = score + '/' + questions.length;
+
+  let hearts = '', msg = '';
+  if (score === 5) {
+    hearts = '💕💕💕💕💕';
+    msg = 'Perfect score! You know our story by heart — and that makes my heart so full. Happy birthday, love. You are everything. 🌸';
+    launchFireworks();
+  } else if (score >= 3) {
+    hearts = '💕💕💕';
+    msg = 'You know the important things — and what matters most is that you\'re here, celebrating today with me. Happy birthday! 🎂';
+  } else {
+    hearts = '💕';
+    msg = 'The score doesn\'t matter — the fact that you mean the world to me? That\'s what counts. Happy birthday, my love. 🌷';
+  }
+  document.getElementById('resultHearts').textContent = hearts;
+  document.getElementById('resultMsg').textContent = msg;
+}
+
+function restartQuiz() {
+  current = 0; score = 0;
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizContent').style.display = '';
+  document.getElementById('quizProgress').style.display = '';
+  renderQuestion();
+}
+
+renderQuestion();
+
+// ── CELEBRATION ───────────────────────────────────────────
+function launchCelebration() {
+  launchConfetti();
+  launchFireworks();
+}
+
+function launchConfetti() {
+  const colors = ['#f4c2c2','#c0687a','#d4a853','#fde8e8','#7a2d3e','#fff0c0'];
+  for (let i = 0; i < 80; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.width = (6 + Math.random() * 10) + 'px';
+      c.style.height = (6 + Math.random() * 10) + 'px';
+      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      const dur = 2 + Math.random() * 2;
+      c.style.animationDuration = dur + 's';
+      c.style.animationDelay = (Math.random() * 0.5) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), (dur + 1) * 1000);
+    }, i * 30);
+  }
+}
+
+// ── FIREWORKS ─────────────────────────────────────────────
+const canvas = document.getElementById('fireworks-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let fwActive = false;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function launchFireworks() {
+  fwActive = true;
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => spawnFirework(), i * 400);
+  }
+  setTimeout(() => { fwActive = false; }, 3000);
+}
+
+function spawnFirework() {
+  const x = 100 + Math.random() * (canvas.width - 200);
+  const y = 100 + Math.random() * (canvas.height * 0.5);
+  const colors = ['#f4c2c2','#d4a853','#c0687a','#fde8e8','#fff0a0','#ffb3b3'];
+  const col = colors[Math.floor(Math.random() * colors.length)];
+  for (let i = 0; i < 60; i++) {
+    const angle = (Math.PI * 2 * i) / 60;
+    const speed = 2 + Math.random() * 4;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 1,
+      decay: 0.015 + Math.random() * 0.015,
+      size: 2 + Math.random() * 2,
+      color: col
+    });
+  }
+  if (!animating) animate();
+}
+
+let animating = false;
+function animate() {
+  animating = true;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.07;
+    p.life -= p.decay;
+    ctx.globalAlpha = p.life;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  if (particles.length > 0) requestAnimationFrame(animate);
+  else animating = false;
+}
+</script>
+</body>
+</html>
